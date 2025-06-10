@@ -168,7 +168,10 @@ export function CartDrawer() {
                 </div>
               </div>
               <Button
-                onClick={handleCheckout}
+                onClick={() => {
+                  toggleCart();
+                  window.location.href = '/checkout';
+                }}
                 className="w-full bg-primary text-white hover:bg-blue-700 transition-colors"
               >
                 Proceed to Checkout
