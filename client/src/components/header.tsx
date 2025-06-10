@@ -111,10 +111,9 @@ export function Header({ onAuthClick, onSearch }: HeaderProps) {
               <Link
                 key={category}
                 href={`/?category=${category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                className="whitespace-nowrap text-sm font-medium text-gray-700 hover:text-primary cursor-pointer"
               >
-                <a className="whitespace-nowrap text-sm font-medium text-gray-700 hover:text-primary cursor-pointer">
-                  {category}
-                </a>
+                {category}
               </Link>
             ))}
           </nav>

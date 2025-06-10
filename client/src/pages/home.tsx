@@ -123,9 +123,9 @@ export default function Home() {
       case "price-high":
         return parseFloat(b.salePrice || b.price) - parseFloat(a.salePrice || a.price);
       case "rating":
-        return parseFloat(b.rating) - parseFloat(a.rating);
+        return parseFloat(b.rating ?? "0") - parseFloat(a.rating ?? "0");
       case "newest":
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
       default:
         return b.featured ? 1 : -1;
     }
@@ -188,14 +188,14 @@ export default function Home() {
               <div className="mb-6">
                 <h4 className="font-medium mb-3">Category</h4>
                 <Select
-                  value={selectedCategory?.toString() || ""}
-                  onValueChange={(value) => setSelectedCategory(value ? parseInt(value) : undefined)}
+                  value={selectedCategory?.toString() || "all"}
+                  onValueChange={(value) => setSelectedCategory(value === "all" ? undefined : parseInt(value))}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="All Categories" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all">All Categories</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category.id} value={category.id.toString()}>
                         {category.name}
